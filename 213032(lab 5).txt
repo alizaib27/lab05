@@ -1,0 +1,317 @@
+Eg#1:
+
+int[] numbers = { 4, 5, 6, 1, 2, 3, -2, -1, 0 };
+foreach (int i in numbers)
+{
+    System.Console.WriteLine(i);
+}
+
+Eg#2:
+
+int[,] numbers2D = new int[3, 2] { {9,99 }, { 3, 33 }, { 5,55}
+};
+foreach(int i in numbers2D)
+{
+    System.Console.WriteLine(i);
+}
+
+Eg#3:
+
+class TestArraysClass
+{
+    static void Main()
+    {
+        int[] array1 = new int[5];
+
+        int[] array2 = {1,3,5,7,9};
+
+        int[] array3 =  { 1,2,3,4,5,6};
+
+        int[,] multiDimensionalArray1 = new int[2, 3];
+
+        int[,] multiDimensionalArray2 =  { { 1, 2, 3 }, { 4, 5, 6 } };
+
+        int[][] jaggedArray = new int[6][];
+        jaggedArray[0] = new int[4] { 1, 2, 3, 4 };
+
+    }
+}
+
+Q#1:
+
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int[,] myArray = Initialize2DArray(); // Initialize the 2D array
+        Print2DArray(myArray); // Print the 2D array
+    }
+
+    static int[,] Initialize2DArray()
+    {
+        int[,] array = new int[3, 4]; // Define a 3x4 array
+
+        // Initialize the elements of the array
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                array[i, j] = i * 4 + j + 1; // Assigning values for demonstration
+            }
+        }
+
+        return array;
+    }
+
+    static void Print2DArray(int[,] array)
+    {
+        int rows = array.GetLength(0);
+        int columns = array.GetLength(1);
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                Console.Write(array[i, j] + "\t"); // Output each element
+            }
+            Console.WriteLine(); // Move to the next row
+        }
+    }
+}
+
+Q#2:
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string[] s = { "hello ", "and ", "welcome ", "to ", "this ", "demo! " };
+        string mergedString = Merger(s);
+
+        Console.WriteLine(mergedString);
+    }
+
+    static string Merger(string[] inputArray)
+    {
+        return string.Concat(inputArray);
+    }
+}
+Q#3:
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string inputString = "This is a sample string with words of various lengths.";
+
+        string[] result = ExtractWordsWithCriteria(inputString);
+
+        Console.WriteLine("Words with 4-5 characters and containing vowels:");
+        foreach (string word in result)
+        {
+            Console.WriteLine(word);
+        }
+    }
+
+    static string[] ExtractWordsWithCriteria(string input)
+    {
+        // Use regular expressions to split the input into words
+        string[] words = Regex.Split(input, @"\W+");
+
+        // Use LINQ to filter words based on length and vowel presence
+        string[] filteredWords = words
+            .Where(word => word.Length >= 4 && word.Length <= 5 && ContainsVowels(word))
+            .ToArray();
+
+        return filteredWords;
+    }
+
+    static bool ContainsVowels(string word)
+    {
+        string vowels = "AEIOUaeiou";
+        return word.Any(c => vowels.Contains(c));
+    }
+}
+Q#4:
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Initialize the responses using random data (you can replace this with actual data if you have it)
+        Random rand = new Random();
+        int[] responses = new int[40];
+        for (int i = 0; i < responses.Length; i++)
+        {
+            responses[i] = rand.Next(1, 6);  // Random number between 1 and 5 (inclusive)
+        }
+
+        // Array to store the frequency of each response
+        int[] frequency = new int[5];
+
+        // Count the frequency of each response
+        foreach (int response in responses)
+        {
+            frequency[response - 1]++;
+        }
+
+        // Display the frequency summary
+        for (int i = 0; i < frequency.Length; i++)
+        {
+            Console.WriteLine($"Response {i + 1} given by: {frequency[i]} people");
+        }
+    }
+}
+Q#5:
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Decimal to Binary Conversion");
+        Console.Write("Enter a decimal number: ");
+        int decimalNumber = int.Parse(Console.ReadLine());
+        string binaryResult = DecimalToBinary(decimalNumber);
+        Console.WriteLine($"Binary representation: {binaryResult}");
+
+        Console.WriteLine("\nBinary to Decimal Conversion");
+        Console.Write("Enter a binary number: ");
+        string binaryNumber = Console.ReadLine();
+        int decimalResult = BinaryToDecimal(binaryNumber);
+        Console.WriteLine($"Decimal representation: {decimalResult}");
+    }
+
+    static string DecimalToBinary(int decimalNumber)
+    {
+        return Convert.ToString(decimalNumber, 2);
+    }
+
+    static int BinaryToDecimal(string binaryNumber)
+    {
+        return Convert.ToInt32(binaryNumber, 2);
+    }
+}
+Q#6:
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Define a rectangular array to store test marks
+        int[,] testMarks = new int[5, 10];
+
+        // Populate the array with sample test marks (you can replace these with actual values)
+        InitializeTestMarks(testMarks);
+
+        // Display the test marks
+        DisplayTestMarks(testMarks);
+
+        // You can also access individual elements of the array like this:
+        int course = 2; // Course 2 (0-based index)
+        int student = 4; // Student 4 (0-based index)
+        int mark = testMarks[course, student];
+        Console.WriteLine($"Test mark for course {course + 1}, student {student + 1}: {mark}");
+    }
+
+    static void InitializeTestMarks(int[,] marks)
+    {
+        // Replace these values with your actual test marks
+        for (int course = 0; course < 5; course++)
+        {
+            for (int student = 0; student < 10; student++)
+            {
+                marks[course, student] = 80 + course * 5 + student;
+            }
+        }
+    }
+
+    static void DisplayTestMarks(int[,] marks)
+    {
+        Console.WriteLine("Test Marks:");
+
+        for (int course = 0; course < 5; course++)
+        {
+            for (int student = 0; student < 10; student++)
+            {
+                Console.WriteLine($"Course {course + 1}, Student {student + 1}: {marks[course, student]}");
+            }
+        }
+    }
+}
+Q#7:
+using System;
+
+class Program
+{
+    const int SIZE = 3;
+
+    static void Main()
+    {
+        int[,] matrixA = new int[SIZE, SIZE];
+        int[,] matrixB = new int[SIZE, SIZE];
+
+        Console.WriteLine("Enter the elements for Matrix A:");
+        ReadMatrix(matrixA);
+
+        Console.WriteLine("\nEnter the elements for Matrix B:");
+        ReadMatrix(matrixB);
+
+        int[,] resultMatrix = MultiplyMatrices(matrixA, matrixB);
+
+        Console.WriteLine("\nResultant Matrix after multiplication (A x B):");
+        PrintMatrix(resultMatrix);
+    }
+
+    static void ReadMatrix(int[,] matrix)
+    {
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE; j++)
+            {
+                Console.Write($"Enter element at position [{i + 1},{j + 1}]: ");
+                matrix[i, j] = int.Parse(Console.ReadLine());
+            }
+        }
+    }
+
+    static int[,] MultiplyMatrices(int[,] matrixA, int[,] matrixB)
+    {
+        int[,] result = new int[SIZE, SIZE];
+
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE; j++)
+            {
+                result[i, j] = 0;
+
+                for (int k = 0; k < SIZE; k++)
+                {
+                    result[i, j] += matrixA[i, k] * matrixB[k, j];
+                }
+            }
+        }
+
+        return result;
+    }
+
+    static void PrintMatrix(int[,] matrix)
+    {
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE; j++)
+            {
+                Console.Write($"{matrix[i, j]}\t");
+            }
+            Console.WriteLine();
+        }
+    }
+}
